@@ -26,8 +26,9 @@ var q4Answers = document.querySelector('#q4answers');
 var incorrect = document.querySelector(".incorrect");
 
 
-var finalScore = document.querySelector('#final-score');
+var finalScore = secondsLeft;
 var totalScore = 0;
+
 // var questionId = document.querySelector('questions');
 
 // var questions = [
@@ -88,6 +89,7 @@ function homeScreen() {
     homeEl.style.display = 'flex';
     activeEl.style.display = 'none';
     finishedEl.style.display = 'none';
+    secondsLeft = 120;
 }
 
 function question1() {
@@ -163,8 +165,8 @@ function start() {
 
 // adds 25 points to the totalScore each time a correct answer is selected //
 function reduceTime() {
-    secondsLeft - 10;
-    console.log(totalScore);
+    secondsLeft = secondsLeft - 10;
+    console.log('time reduced');
 }
 
 
@@ -181,11 +183,9 @@ q3Answers.addEventListener('click', question4);
 q4Answers.addEventListener('click', finishedScreen);
 
 // run addPoints to add points to totalScore when click event happens //
+
+
 incorrect.addEventListener('click', reduceTime);
-
-timer.textContent = secondsLeft + " seconds remaining";
-
-
 
 start();
 
