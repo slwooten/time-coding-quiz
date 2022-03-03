@@ -10,6 +10,11 @@ var q4 = document.querySelector('#question4');
 
 // variable for the take quiz button, used to select the button with id 'take-quiz' //
 var takeQuiz = document.querySelector('#take-quiz');
+var timer = document.querySelector('#timer');
+var secondsLeft = 10;
+
+
+
 
 // variables to select all answer buttons, used to move the quiz forward no matter what answer is selected // 
 var q1Answers = document.querySelector('#q1answers');
@@ -18,10 +23,8 @@ var q3Answers = document.querySelector('#q3answers');
 var q4Answers = document.querySelector('#q4answers');
 
 // variables for the correct answers, used to add points to the total score //
-var steph = document.querySelector('#steph');
-var bill = document.querySelector('#bill');
-var jerry = document.querySelector('#jerry');
-var correct = document.querySelector('#correct');
+var incorrect = document.querySelector(".incorrect");
+
 
 var finalScore = document.querySelector('#final-score');
 var totalScore = 0;
@@ -135,15 +138,35 @@ function finishedScreen() {
     finalScore.innerHTML = "<p>Final Score:</p>" + totalScore;
 }
 
+// functions for countdown timer //
+function showSeconds() {
+    timer.textContent = secondsLeft + " seconds remaining.";
+}
+
+function setTime() {
+    showSeconds();
+    var timerInterval = setInterval(function () {
+        secondsLeft--;
+
+        showSeconds();
+
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval);
+            finishedScreen();
+        }
+    }, 1000);
+}
+
 function start() {
     homeScreen();
 }
 
 // adds 25 points to the totalScore each time a correct answer is selected //
-function addPoints() {
-    totalScore += 25;
+function reduceTime() {
     console.log(totalScore);
 }
+
+
 
 takeQuiz.addEventListener('click', question1);
 
@@ -156,10 +179,11 @@ q3Answers.addEventListener('click', question4);
 q4Answers.addEventListener('click', finishedScreen);
 
 // run addPoints to add points to totalScore when click event happens //
-steph.addEventListener('click', addPoints);
-bill.addEventListener('click', addPoints);
-jerry.addEventListener('click', addPoints);
-correct.addEventListener('click', addPoints);
+incorrect.addEventListener('click', reduceTime);
 
+timer.textContent = secondsLeft + " seconds remaining.";
+
+
+setTime();
 start();
 
