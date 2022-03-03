@@ -23,6 +23,7 @@ var bill = document.querySelector('#bill');
 var jerry = document.querySelector('#jerry');
 var correct = document.querySelector('#correct');
 
+var finalScore = document.querySelector('#final-score');
 var totalScore = 0;
 // var questionId = document.querySelector('questions');
 
@@ -130,6 +131,8 @@ function finishedScreen() {
     homeEl.style.display = 'none';
     activeEl.style.display = 'none';
     finishedEl.style.display = 'flex';
+    // puts the final score on the page for user to see //
+    finalScore.innerHTML = "<p>Final Score:</p>" + totalScore;
 }
 
 function start() {
