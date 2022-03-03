@@ -11,7 +11,7 @@ var q4 = document.querySelector('#question4');
 // variable for the take quiz button, used to select the button with id 'take-quiz' //
 var takeQuiz = document.querySelector('#take-quiz');
 var timer = document.querySelector('#timer');
-var secondsLeft = 10;
+var secondsLeft = 120;
 
 
 
@@ -140,7 +140,7 @@ function finishedScreen() {
 
 // functions for countdown timer //
 function showSeconds() {
-    timer.textContent = secondsLeft + " seconds remaining.";
+    timer.textContent = secondsLeft + " seconds remaining";
 }
 
 function setTime() {
@@ -163,12 +163,14 @@ function start() {
 
 // adds 25 points to the totalScore each time a correct answer is selected //
 function reduceTime() {
+    secondsLeft - 10;
     console.log(totalScore);
 }
 
 
 
 takeQuiz.addEventListener('click', question1);
+takeQuiz.addEventListener('click', setTime);
 
 // event listeners to move to the next question screen //
 q1Answers.addEventListener('click', question2);
@@ -181,9 +183,9 @@ q4Answers.addEventListener('click', finishedScreen);
 // run addPoints to add points to totalScore when click event happens //
 incorrect.addEventListener('click', reduceTime);
 
-timer.textContent = secondsLeft + " seconds remaining.";
+timer.textContent = secondsLeft + " seconds remaining";
 
 
-setTime();
+
 start();
 
