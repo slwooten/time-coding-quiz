@@ -10,10 +10,20 @@ var q4 = document.querySelector('#question4');
 
 // variable for the take quiz button, used to select the button with id 'take-quiz' //
 var takeQuiz = document.querySelector('#take-quiz');
+
+// variables to select all answer buttons, used to move the quiz forward no matter what answer is selected // 
 var q1Answers = document.querySelector('#q1answers');
 var q2Answers = document.querySelector('#q2answers');
 var q3Answers = document.querySelector('#q3answers');
 var q4Answers = document.querySelector('#q4answers');
+
+// variables for the correct answers, used to add points to the total score //
+var steph = document.querySelector('#steph');
+var bill = document.querySelector('#bill');
+var jerry = document.querySelector('#jerry');
+var correct = document.querySelector('#correct');
+
+var totalScore = 0;
 // var questionId = document.querySelector('questions');
 
 // var questions = [
@@ -126,11 +136,27 @@ function start() {
     homeScreen();
 }
 
+// adds 25 points to the totalScore each time a correct answer is selected //
+function addPoints() {
+    totalScore += 25;
+    console.log(totalScore);
+}
 
 takeQuiz.addEventListener('click', question1);
+
+// event listeners to move to the next question screen //
 q1Answers.addEventListener('click', question2);
 q2Answers.addEventListener('click', question3);
 q3Answers.addEventListener('click', question4);
+
+// moves to finished screen to enter initials //
 q4Answers.addEventListener('click', finishedScreen);
 
+// run addPoints to add points to totalScore when click event happens //
+steph.addEventListener('click', addPoints);
+bill.addEventListener('click', addPoints);
+jerry.addEventListener('click', addPoints);
+correct.addEventListener('click', addPoints);
+
 start();
+
